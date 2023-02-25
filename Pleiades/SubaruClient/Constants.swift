@@ -9,19 +9,50 @@ import Foundation
 
 let API_VERSION = "g2v24"
 
-public var SB_USE_CANADA: Bool {
+public enum SBRegion: String, CaseIterable {
+    case UnitedStates = "United States"
+    case Canada = "Canada"
+    case Test = "Test Server"
+    case NotSelected = "Not Selected"
+}
+
+public var SB_CURRENT_REGION: SBRegion {
     get {
-        UserDefaults().bool(forKey: "SBUseCanada")
+        if let regionName = UserDefaults().string(forKey: "SBCurrentRegion") {
+            if let region = SBRegion(rawValue: regionName) {
+                return region
+            }
+        }
+        
+        return .NotSelected
     }
     set(newValue) {
-        UserDefaults().set(newValue, forKey: "SBUseCanada")
+        UserDefaults().set(newValue.rawValue, forKey: "SBCurrentRegion")
+    }
+}
+
+public func emojiForRegion(_ region: SBRegion) -> String {
+    switch region {
+    case .UnitedStates:
+        return "🇺🇸"
+    case .Canada:
+        return "🇨🇦"
+    case .Test:
+        return "💾"
+    case .NotSelected:
+        return "❓"
     }
 }
 
 public var SB_BASE_URL: URL {
-    if SB_USE_CANADA {
-        return URL(string: "https://mobileapi.ca.prod.subarucs.com")!.appending(component: API_VERSION)
-    } else {
+    switch SB_CURRENT_REGION {
+    case .UnitedStates:
         return URL(string: "https://mobileapi.prod.subarucs.com")!.appending(component: API_VERSION)
+    case .Canada:
+        return URL(string: "https://mobileapi.ca.prod.subarucs.com")!.appending(component: API_VERSION)
+    case .Test:
+        return URL(string: "https://pleiades-test.sjodle.com")!.appending(component: API_VERSION)
+    case .NotSelected:
+        return URL(string: "")!
     }
 }
