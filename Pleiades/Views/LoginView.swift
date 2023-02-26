@@ -15,29 +15,34 @@ struct LoginView: View {
     
     var body: some View {
         VStack {
-            Text("Log in with your Subaru account:")
-            TextField("Email", text: $email)
-                .textContentType(.emailAddress)
-                .keyboardType(.emailAddress)
-                .textInputAutocapitalization(.never)
-            SecureField("Password", text: $password)
-            Button("Log In") {
-                Task {
-                    let result = try! await logIn(username: email, password: password, deviceId: UIDevice.current.identifierForVendor!.uuidString)
-                    if result.success {
-                        appState.loggedIn = true
+            Text("Log in with your Subaru account")
+                .font(.title)
+            VStack {
+                TextField("Email", text: $email)
+                    .padding()
+                    .textContentType(.emailAddress)
+                    .keyboardType(.emailAddress)
+                    .textInputAutocapitalization(.never)
+                SecureField("Password", text: $password)
+                    .padding()
+                Button {
+                    Task {
+                        let result = try! await logIn(username: email, password: password, deviceId: UIDevice.current.identifierForVendor!.uuidString)
+                        if result.success {
+                            appState.loggedIn = true
+                        }
                     }
-                }
-            }.buttonStyle(.borderedProminent)
-            HStack {
-                Text("Selected region:")
-                Text(emojiForRegion(appState.currentRegion))
-                Text(appState.currentRegion.rawValue)
-                Button("Change...") {
+                } label: {
+                    Text("Log in").frame(maxWidth: .infinity)
+                }.padding().buttonStyle(.borderedProminent)
+            }.frame(maxHeight: .infinity).padding()
+            VStack {
+                Text("\(emojiForRegion(appState.currentRegion))\t\(appState.currentRegion.rawValue)")
+                Button("Change region") {
                     appState.currentRegion = .NotSelected
                 }
             }
-        }
+        }.padding()
     }
 }
 

@@ -14,7 +14,7 @@ struct TopLevelErrorView: View {
         VStack {
             Text("Failed to initialize the app!")
             Text("Switching regions sometimes fixes this.")
-            Button("Switch region...") {
+            Button("Switch region") {
                 appState.currentRegion = .NotSelected
             }.buttonStyle(.borderedProminent)
         }

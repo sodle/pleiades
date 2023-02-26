@@ -38,14 +38,14 @@ struct ContentView_Previews: PreviewProvider {
                 .previewDisplayName("Loading")
             ContentView()
                 .environmentObject({() -> AppState in
-                    var state = AppState()
+                    let state = AppState()
                     state.loading = false
                     return state
                 }())
                 .previewDisplayName("Region Select")
             ContentView()
                 .environmentObject({() -> AppState in
-                    var state = AppState()
+                    let state = AppState()
                     state.loading = false
                     state.currentRegion = .UnitedStates
                     state.loggedIn = true
@@ -54,7 +54,7 @@ struct ContentView_Previews: PreviewProvider {
                 .previewDisplayName("Logged in")
             ContentView()
                 .environmentObject({() -> AppState in
-                    var state = AppState()
+                    let state = AppState()
                     state.loading = false
                     state.currentRegion = .UnitedStates
                     state.failed = true
@@ -63,7 +63,7 @@ struct ContentView_Previews: PreviewProvider {
                 .previewDisplayName("Failed")
             ContentView()
                 .environmentObject({() -> AppState in
-                    var state = AppState()
+                    let state = AppState()
                     state.loading = false
                     state.currentRegion = .UnitedStates
                     return state

@@ -12,14 +12,23 @@ struct RegionSelectView: View {
     
     var body: some View {
         VStack {
-            Text("Select your region:")
-            ForEach(SBRegion.allCases.filter {$0 != .NotSelected}, id: \.rawValue) { region in
-                Button("\(emojiForRegion(region))\t\(region.rawValue)") {
-                    SB_CURRENT_REGION = region
-                    appState.currentRegion = region
-                }.buttonStyle(.bordered)
-            }
-        }
+            Text("Select your region")
+                .font(.title)
+            VStack {
+                ForEach(SBRegion.allCases.filter {$0 != .NotSelected}, id: \.rawValue) { region in
+                    Button {
+                        SB_CURRENT_REGION = region
+                        appState.currentRegion = region
+                    } label: {
+                        HStack {
+                            Text(emojiForRegion(region))
+                            Text(region.rawValue)
+                            Spacer()
+                        }.frame(maxWidth: .infinity).padding()
+                    }.buttonStyle(.bordered)
+                }
+            }.frame(maxHeight: .infinity).padding()
+        }.padding()
     }
 }
 
