@@ -30,6 +30,7 @@ struct VehicleDetailView: View {
                         Text(data.extDescrip)
                         Text("VIN: \(data.vin)")
                         Text("Plate: \(data.licensePlate) (\(data.licensePlateState))")
+                        Text("API Generation: \(data.apiGeneration.rawValue)")
                     }.padding()
                     VStack {
                         Text("Last known location")

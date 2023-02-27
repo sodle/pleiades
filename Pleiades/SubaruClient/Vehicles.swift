@@ -45,6 +45,12 @@ public struct VehicleGeoPosition: Codable {
     let timestamp: String
 }
 
+public enum SubaruAPIGeneration: String {
+    case g1
+    case g2
+    case g3
+}
+
 public struct Vehicle: Codable, Identifiable {
     public var id: String {
         return vin
@@ -65,6 +71,16 @@ public struct Vehicle: Codable, Identifiable {
     
     let timeZone: String
     let vehicleGeoPosition: VehicleGeoPosition
+    
+    var apiGeneration: SubaruAPIGeneration {
+        if features.contains("g3") {
+            return .g3
+        }
+        if features.contains("g2") {
+            return .g2
+        }
+        return .g1
+    }
 }
 
 public struct SelectVehicleResponse: Codable {
