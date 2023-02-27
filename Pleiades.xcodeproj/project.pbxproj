@@ -17,6 +17,7 @@
 		1ACE4B2D29AC283700CB004E /* Vehicles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE4B2C29AC283700CB004E /* Vehicles.swift */; };
 		1ACE4B2F29AC457000CB004E /* VehicleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE4B2E29AC457000CB004E /* VehicleListView.swift */; };
 		1ACE4B3129AC4D6F00CB004E /* VehicleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE4B3029AC4D6F00CB004E /* VehicleDetailView.swift */; };
+		1AD0071529AD371400256BCF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1AD0071429AD371400256BCF /* README.md */; };
 		1AE12E0429AB046B0040E16C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE12E0329AB046B0040E16C /* LoginView.swift */; };
 		1AE12E0629AB04B80040E16C /* RegionSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE12E0529AB04B80040E16C /* RegionSelectView.swift */; };
 		1AE12E0829AB05140040E16C /* TopLevelErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE12E0729AB05140040E16C /* TopLevelErrorView.swift */; };
@@ -36,6 +37,7 @@
 		1ACE4B2E29AC457000CB004E /* VehicleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListView.swift; sourceTree = "<group>"; };
 		1ACE4B3029AC4D6F00CB004E /* VehicleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetailView.swift; sourceTree = "<group>"; };
 		1ACE4B3329AC59CC00CB004E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.2.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
+		1AD0071429AD371400256BCF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1AE12E0329AB046B0040E16C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		1AE12E0529AB04B80040E16C /* RegionSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectView.swift; sourceTree = "<group>"; };
 		1AE12E0729AB05140040E16C /* TopLevelErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopLevelErrorView.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 		1A040FD729A1134400CF816C = {
 			isa = PBXGroup;
 			children = (
+				1AD0071429AD371400256BCF /* README.md */,
 				1A040FE229A1134400CF816C /* Pleiades */,
 				1A040FE129A1134400CF816C /* Products */,
 				1ACE4B3229AC59CC00CB004E /* Frameworks */,
@@ -188,6 +191,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AD0071529AD371400256BCF /* README.md in Resources */,
 				1A040FEC29A1134500CF816C /* Preview Assets.xcassets in Resources */,
 				1A040FE829A1134500CF816C /* Assets.xcassets in Resources */,
 			);
