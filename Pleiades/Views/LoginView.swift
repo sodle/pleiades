@@ -11,6 +11,8 @@ struct LoginView: View {
     @State var email = ""
     @State var password = ""
     
+    @State var authCodeSent = false
+    
     @EnvironmentObject var appState: AppState
     
     var body: some View {
@@ -30,6 +32,10 @@ struct LoginView: View {
                         let result = try! await logIn(username: email, password: password, deviceId: UIDevice.current.identifierForVendor!.uuidString)
                         if result.success {
                             appState.loggedIn = true
+                            appState.deviceRegistered = result.data.deviceRegistered
+                            appState.account = result.data.account
+                            appState.vehicles = result.data.vehicles
+                            saveCookie()
                         }
                     }
                 } label: {

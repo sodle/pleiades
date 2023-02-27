@@ -19,7 +19,16 @@ struct ContentView: View {
                     appState.failed = false
                 }
             } else if appState.loggedIn {
-                Text("Logged in!")
+                if appState.deviceRegistered {
+                    VStack {
+                        Text("Logged in!")
+                        if let account = appState.account {
+                            Text("\(account.firstName) \(account.lastName)")
+                        }
+                    }
+                } else {
+                    TwoFactorView(preview: true)
+                }
             } else if appState.failed {
                 TopLevelErrorView()
             } else {
@@ -51,7 +60,17 @@ struct ContentView_Previews: PreviewProvider {
                     state.loggedIn = true
                     return state
                 }())
-                .previewDisplayName("Logged in")
+                .previewDisplayName("Two Factor")
+            ContentView()
+                .environmentObject({() -> AppState in
+                    let state = AppState()
+                    state.loading = false
+                    state.currentRegion = .UnitedStates
+                    state.loggedIn = true
+                    state.deviceRegistered = true
+                    return state
+                }())
+                .previewDisplayName("Logged In")
             ContentView()
                 .environmentObject({() -> AppState in
                     let state = AppState()
