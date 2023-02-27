@@ -15,6 +15,8 @@
 		1A040FF629A11FD000CF816C /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A040FF529A11FD000CF816C /* Authentication.swift */; };
 		1A040FF929A1308B00CF816C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1A040FF829A1308B00CF816C /* Alamofire */; };
 		1ACE4B2D29AC283700CB004E /* Vehicles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE4B2C29AC283700CB004E /* Vehicles.swift */; };
+		1ACE4B2F29AC457000CB004E /* VehicleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE4B2E29AC457000CB004E /* VehicleListView.swift */; };
+		1ACE4B3129AC4D6F00CB004E /* VehicleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE4B3029AC4D6F00CB004E /* VehicleDetailView.swift */; };
 		1AE12E0429AB046B0040E16C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE12E0329AB046B0040E16C /* LoginView.swift */; };
 		1AE12E0629AB04B80040E16C /* RegionSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE12E0529AB04B80040E16C /* RegionSelectView.swift */; };
 		1AE12E0829AB05140040E16C /* TopLevelErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE12E0729AB05140040E16C /* TopLevelErrorView.swift */; };
@@ -31,6 +33,9 @@
 		1A040FF329A1151200CF816C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1A040FF529A11FD000CF816C /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		1ACE4B2C29AC283700CB004E /* Vehicles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicles.swift; sourceTree = "<group>"; };
+		1ACE4B2E29AC457000CB004E /* VehicleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListView.swift; sourceTree = "<group>"; };
+		1ACE4B3029AC4D6F00CB004E /* VehicleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetailView.swift; sourceTree = "<group>"; };
+		1ACE4B3329AC59CC00CB004E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.2.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
 		1AE12E0329AB046B0040E16C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		1AE12E0529AB04B80040E16C /* RegionSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectView.swift; sourceTree = "<group>"; };
 		1AE12E0729AB05140040E16C /* TopLevelErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopLevelErrorView.swift; sourceTree = "<group>"; };
@@ -54,6 +59,7 @@
 			children = (
 				1A040FE229A1134400CF816C /* Pleiades */,
 				1A040FE129A1134400CF816C /* Products */,
+				1ACE4B3229AC59CC00CB004E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +103,14 @@
 			path = SubaruClient;
 			sourceTree = "<group>";
 		};
+		1ACE4B3229AC59CC00CB004E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1ACE4B3329AC59CC00CB004E /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1AE12E0229AB00A90040E16C /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +118,8 @@
 				1AE12E0529AB04B80040E16C /* RegionSelectView.swift */,
 				1AE12E0729AB05140040E16C /* TopLevelErrorView.swift */,
 				1AE12E0929ABC0EA0040E16C /* TwoFactorView.swift */,
+				1ACE4B2E29AC457000CB004E /* VehicleListView.swift */,
+				1ACE4B3029AC4D6F00CB004E /* VehicleDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,8 +203,10 @@
 				1AE12E0629AB04B80040E16C /* RegionSelectView.swift in Sources */,
 				1A040FE629A1134400CF816C /* ContentView.swift in Sources */,
 				1AE12E0A29ABC0EA0040E16C /* TwoFactorView.swift in Sources */,
+				1ACE4B3129AC4D6F00CB004E /* VehicleDetailView.swift in Sources */,
 				1A040FE429A1134400CF816C /* PleiadesApp.swift in Sources */,
 				1A040FF429A1151200CF816C /* Constants.swift in Sources */,
+				1ACE4B2F29AC457000CB004E /* VehicleListView.swift in Sources */,
 				1AE12E0429AB046B0040E16C /* LoginView.swift in Sources */,
 				1AE12E0829AB05140040E16C /* TopLevelErrorView.swift in Sources */,
 				1A040FF629A11FD000CF816C /* Authentication.swift in Sources */,
@@ -321,6 +339,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Pleiades/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pleiades;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -363,6 +382,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Pleiades/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pleiades;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;

@@ -20,12 +20,7 @@ struct ContentView: View {
                 }
             } else if appState.loggedIn {
                 if appState.deviceRegistered {
-                    VStack {
-                        Text("Logged in!")
-                        if let account = appState.account {
-                            Text("\(account.firstName) \(account.lastName)")
-                        }
-                    }
+                    VehicleListView()
                 } else {
                     TwoFactorView(preview: true)
                 }
@@ -68,6 +63,10 @@ struct ContentView_Previews: PreviewProvider {
                     state.currentRegion = .UnitedStates
                     state.loggedIn = true
                     state.deviceRegistered = true
+                    state.account = Account(firstName: "John", lastName: "Smith")
+                    state.vehicles = [
+                        VehicleStub(vehicleName: "John's WRX", vin: "VXXX")
+                    ]
                     return state
                 }())
                 .previewDisplayName("Logged In")
