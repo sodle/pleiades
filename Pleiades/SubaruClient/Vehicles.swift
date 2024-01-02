@@ -6,7 +6,8 @@
 //
 
 import Foundation
-import Alamofire
+
+// MARK: - List vehicles for account
 
 public struct Account: Codable {
     let firstName: String
@@ -24,20 +25,16 @@ public struct VehicleStub: Codable, Identifiable {
 
 public struct RefreshVehiclesResponseData: Codable {
     let deviceRegistered: Bool
-    let account: Account
-    let vehicles: [VehicleStub]
+    let account: Account?
+    let vehicles: [VehicleStub]?
 }
 
 public struct RefreshVehiclesResponse: Codable {
     let success: Bool
-    let data: RefreshVehiclesResponseData
+    let data: RefreshVehiclesResponseData?
 }
 
-public func refreshVehicles() async throws -> RefreshVehiclesResponse {
-    try await AF.request(SB_BASE_URL.appending(component: "refreshVehicles.json"))
-        .serializingDecodable(RefreshVehiclesResponse.self)
-        .value
-}
+// MARK: - Load a vehicle
 
 public struct VehicleGeoPosition: Codable {
     let latitude: Double
@@ -85,13 +82,23 @@ public struct Vehicle: Codable, Identifiable {
 
 public struct SelectVehicleResponse: Codable {
     let success: Bool
-    let data: Vehicle
+    let data: Vehicle?
 }
 
-public func selectVehicle(vin: String) async throws -> SelectVehicleResponse {
-    try await AF.request(SB_BASE_URL.appending(component: "selectVehicle.json"), method: .get, parameters: [
-        "vin": vin
-    ])
-    .serializingDecodable(SelectVehicleResponse.self)
-    .value
+// MARK: - Client implementation
+
+extension Client {
+    public func refreshVehicles() async throws -> RefreshVehiclesResponse {
+        let url = self.baseURL.appending(component: "refreshVehicles.json")
+        let request = Request<RefreshVehiclesResponse>(method: .get, url: url)
+        return try await send(request)
+    }
+    
+    public func selectVehicle(withVin vin: String) async throws -> SelectVehicleResponse {
+        let url = self.baseURL.appending(component: "selectVehicle.json")
+        let request = Request<SelectVehicleResponse>(method: .get, url: url, query: [
+            "vin": vin,
+        ])
+        return try await send(request)
+    }
 }

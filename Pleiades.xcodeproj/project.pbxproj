@@ -13,7 +13,8 @@
 		1A040FEC29A1134500CF816C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A040FEB29A1134500CF816C /* Preview Assets.xcassets */; };
 		1A040FF429A1151200CF816C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A040FF329A1151200CF816C /* Constants.swift */; };
 		1A040FF629A11FD000CF816C /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A040FF529A11FD000CF816C /* Authentication.swift */; };
-		1A040FF929A1308B00CF816C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1A040FF829A1308B00CF816C /* Alamofire */; };
+		1A268A7B2B43E8EE00C35FAE /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A268A7A2B43E8EE00C35FAE /* Client.swift */; };
+		1A268A7D2B447DC600C35FAE /* Cookies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A268A7C2B447DC600C35FAE /* Cookies.swift */; };
 		1ACE4B2D29AC283700CB004E /* Vehicles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE4B2C29AC283700CB004E /* Vehicles.swift */; };
 		1ACE4B2F29AC457000CB004E /* VehicleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE4B2E29AC457000CB004E /* VehicleListView.swift */; };
 		1ACE4B3129AC4D6F00CB004E /* VehicleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE4B3029AC4D6F00CB004E /* VehicleDetailView.swift */; };
@@ -33,6 +34,8 @@
 		1A040FEB29A1134500CF816C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1A040FF329A1151200CF816C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1A040FF529A11FD000CF816C /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		1A268A7A2B43E8EE00C35FAE /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		1A268A7C2B447DC600C35FAE /* Cookies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cookies.swift; sourceTree = "<group>"; };
 		1ACE4B2C29AC283700CB004E /* Vehicles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicles.swift; sourceTree = "<group>"; };
 		1ACE4B2E29AC457000CB004E /* VehicleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListView.swift; sourceTree = "<group>"; };
 		1ACE4B3029AC4D6F00CB004E /* VehicleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetailView.swift; sourceTree = "<group>"; };
@@ -49,7 +52,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A040FF929A1308B00CF816C /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +104,8 @@
 				1A040FF329A1151200CF816C /* Constants.swift */,
 				1A040FF529A11FD000CF816C /* Authentication.swift */,
 				1ACE4B2C29AC283700CB004E /* Vehicles.swift */,
+				1A268A7A2B43E8EE00C35FAE /* Client.swift */,
+				1A268A7C2B447DC600C35FAE /* Cookies.swift */,
 			);
 			path = SubaruClient;
 			sourceTree = "<group>";
@@ -144,7 +148,6 @@
 			);
 			name = Pleiades;
 			packageProductDependencies = (
-				1A040FF829A1308B00CF816C /* Alamofire */,
 			);
 			productName = Pleiades;
 			productReference = 1A040FE029A1134400CF816C /* Pleiades.app */;
@@ -158,7 +161,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					1A040FDF29A1134400CF816C = {
 						CreatedOnToolsVersion = 14.2;
@@ -175,7 +178,6 @@
 			);
 			mainGroup = 1A040FD729A1134400CF816C;
 			packageReferences = (
-				1A040FF729A1308B00CF816C /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 1A040FE129A1134400CF816C /* Products */;
 			projectDirPath = "";
@@ -211,8 +213,10 @@
 				1A040FE429A1134400CF816C /* PleiadesApp.swift in Sources */,
 				1A040FF429A1151200CF816C /* Constants.swift in Sources */,
 				1ACE4B2F29AC457000CB004E /* VehicleListView.swift in Sources */,
+				1A268A7D2B447DC600C35FAE /* Cookies.swift in Sources */,
 				1AE12E0429AB046B0040E16C /* LoginView.swift in Sources */,
 				1AE12E0829AB05140040E16C /* TopLevelErrorView.swift in Sources */,
+				1A268A7B2B43E8EE00C35FAE /* Client.swift in Sources */,
 				1A040FF629A11FD000CF816C /* Authentication.swift in Sources */,
 				1ACE4B2D29AC283700CB004E /* Vehicles.swift in Sources */,
 			);
@@ -225,6 +229,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -254,9 +259,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -283,6 +290,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -312,9 +320,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -338,6 +348,7 @@
 				CODE_SIGN_ENTITLEMENTS = Pleiades/Pleiades.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Pleiades/Preview Content\"";
 				DEVELOPMENT_TEAM = TYVR9GGSKN;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -381,6 +392,7 @@
 				CODE_SIGN_ENTITLEMENTS = Pleiades/Pleiades.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Pleiades/Preview Content\"";
 				DEVELOPMENT_TEAM = TYVR9GGSKN;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -438,25 +450,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		1A040FF729A1308B00CF816C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		1A040FF829A1308B00CF816C /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1A040FF729A1308B00CF816C /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1A040FD829A1134400CF816C /* Project object */;
 }

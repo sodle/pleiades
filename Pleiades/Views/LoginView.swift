@@ -11,7 +11,9 @@ struct LoginView: View {
     @State var email = ""
     @State var password = ""
     
-    @State var authCodeSent = false
+    @State var alertActive = false
+    @State var alertTitle = ""
+    @State var alertText = ""
     
     @EnvironmentObject var appState: AppState
     
@@ -29,13 +31,15 @@ struct LoginView: View {
                     .padding()
                 Button {
                     Task {
-                        let result = try! await logIn(username: email, password: password, deviceId: UIDevice.current.identifierForVendor!.uuidString)
-                        if result.success {
+                        if let loginResult = try? await client.logIn(username: email, password: password), loginResult.success, let data = loginResult.data {
                             appState.loggedIn = true
-                            appState.deviceRegistered = result.data.deviceRegistered
-                            appState.account = result.data.account
-                            appState.vehicles = result.data.vehicles
-                            saveCookie()
+                            appState.deviceRegistered = data.deviceRegistered
+                            appState.account = data.account
+                            appState.vehicles = data.vehicles
+                        } else {
+                            alertActive = true
+                            alertTitle = "Login failed"
+                            alertText = "Please check your credentials and try again."
                         }
                     }
                 } label: {
@@ -48,7 +52,13 @@ struct LoginView: View {
                     appState.currentRegion = .NotSelected
                 }
             }
-        }.padding()
+        }
+        .alert(alertTitle, isPresented: $alertActive, actions: {
+            Button("Dismiss") {}
+        }, message: {
+            Text(alertText)
+        })
+        .padding()
     }
 }
 

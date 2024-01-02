@@ -8,29 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    var preview = false
+    
     @EnvironmentObject var appState: AppState
     
     var body: some View {
-        VStack {
-            if appState.loading {
+        if appState.loading {
+            VStack {
                 Text("Loading...")
-            } else if appState.currentRegion == .NotSelected {
-                RegionSelectView().task {
-                    appState.failed = false
-                }
-            } else if appState.loggedIn {
-                if appState.deviceRegistered {
-                    VehicleListView()
-                } else {
-                    TwoFactorView(preview: true)
-                }
-            } else if appState.failed {
-                TopLevelErrorView()
-            } else {
-                LoginView()
             }
+        } else if appState.currentRegion == .NotSelected {
+            RegionSelectView().task {
+                appState.failed = false
+            }
+        } else if appState.loggedIn {
+            if appState.deviceRegistered {
+                VehicleListView()
+            } else {
+                TwoFactorView(preview: preview)
+            }
+        } else if appState.failed {
+            TopLevelErrorView()
+        } else {
+            LoginView()
         }
-        .padding()
     }
 }
 
@@ -47,7 +48,7 @@ struct ContentView_Previews: PreviewProvider {
                     return state
                 }())
                 .previewDisplayName("Region Select")
-            ContentView()
+            ContentView(preview: true)
                 .environmentObject({() -> AppState in
                     let state = AppState()
                     state.loading = false

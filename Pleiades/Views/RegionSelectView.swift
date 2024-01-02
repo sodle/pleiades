@@ -19,6 +19,7 @@ struct RegionSelectView: View {
                     Button {
                         SB_CURRENT_REGION = region
                         appState.currentRegion = region
+                        UserDefaults().set(region.rawValue, forKey: "Region")
                     } label: {
                         HStack {
                             Text(emojiForRegion(region))

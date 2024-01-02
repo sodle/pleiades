@@ -6,109 +6,130 @@
 //
 
 import Foundation
-import Alamofire
 
-public struct ValidateSessionResponse : Codable {
+// MARK: - Validate session
+
+public struct ValidateSessionResponse : Decodable {
     let success: Bool
 }
 
-public func validateSession() async throws -> ValidateSessionResponse {
-    try await AF.request(SB_BASE_URL.appending(component: "validateSession.json"))
-        .serializingDecodable(ValidateSessionResponse.self)
-        .value
-}
+// MARK: - Log in
 
-public func saveCookie() {
-    if let cookies = HTTPCookieStorage.shared.cookies {
-        for cookie in cookies {
-            if cookie.name == "JSESSIONID" {
-                UserDefaults().set(cookie.value, forKey: "SessionCookie")
-            }
-        }
+public struct LoginRequest : FormDataEncodable {
+    public func formParameters() -> [URLQueryItem] {
+        [
+            URLQueryItem(name: "loginUsername", value: loginUsername),
+            URLQueryItem(name: "password", value: password),
+            URLQueryItem(name: "deviceId", value: deviceID),
+        ]
     }
+    
+    let loginUsername: String
+    let password: String
+    let deviceID: String
 }
 
-public func loadCookie() {
-    if let domain = SB_BASE_URL.host() {
-        if let sessionId = UserDefaults().string(forKey: "SessionCookie") {
-            if let cookie = HTTPCookie(properties: [
-                .name: "JSESSIONID",
-                .domain: domain,
-                .secure: true,
-                .path: "/" + SB_API_VERSION,
-                .value: sessionId
-            ]) {
-                HTTPCookieStorage.shared.setCookie(cookie)
-            }
-        }
-    }
-}
-
-public struct LogInResponseData : Codable {
+public struct LoginResponseData : Decodable {
     let deviceRegistered: Bool
     let account: Account
     let vehicles: [VehicleStub]
 }
 
-public struct LogInResponse : Codable {
+public struct LoginResponse : Decodable {
     let success: Bool
-    let data: LogInResponseData
+    let data: LoginResponseData?
 }
 
-public func logIn(username: String, password: String, deviceId: String) async throws -> LogInResponse {
-    try await AF.request(SB_BASE_URL.appending(component: "login.json"), method: .post, parameters: [
-        "loginUsername": username,
-        "password": password,
-        "deviceId": deviceId
-    ])
-    .serializingDecodable(LogInResponse.self)
-    .value
-}
+// MARK: - Get two-step verification contacts
 
-public struct TwoFactorContactsData: Codable {
+public struct TwoFactorContactsData: Decodable {
     let phone: String?
     let userName: String?
 }
 
-public struct TwoFactorContactsResponse: Codable {
+public struct TwoFactorContactsResponse: Decodable {
     let success: Bool
-    let data: TwoFactorContactsData
+    let data: TwoFactorContactsData?
 }
 
-public func getTwoFactorContacts() async throws -> TwoFactorContactsResponse {
-    try await AF.request(SB_BASE_URL.appending(component: "twoStepAuthContacts.json"), method: .get)
-        .serializingDecodable(TwoFactorContactsResponse.self)
-        .value
-}
+// MARK: - Send two-step verification code
 
 public enum TwoFactorContactMethod: String {
     case sms = "phone"
     case email = "userName"
 }
 
-public struct SendTwoFactorResponse: Codable {
+public struct SendTwoFactorRequest: FormDataEncodable {
+    public func formParameters() -> [URLQueryItem] {
+        [
+            URLQueryItem(name: "contactMethod", value: contactMethod.rawValue),
+        ]
+    }
+    
+    let contactMethod: TwoFactorContactMethod
+}
+
+public struct SendTwoFactorResponse: Decodable {
     let success: Bool
 }
 
-public func sendTwoFactorCode(usingContactMethod contactMethod: TwoFactorContactMethod) async throws -> SendTwoFactorResponse {
-    try await AF.request(SB_BASE_URL.appending(component: "twoStepAuthSendVerification.json"), method: .post, parameters: [
-        "contactMethod": contactMethod.rawValue
-    ])
-    .serializingDecodable(SendTwoFactorResponse.self)
-    .value
+// MARK: - Verify two-step verification code
+
+public struct VerifyTwoFactorRequest: FormDataEncodable {
+    public func formParameters() -> [URLQueryItem] {
+        [
+            URLQueryItem(name: "deviceId", value: deviceID),
+            URLQueryItem(name: "deviceName", value: deviceName),
+            URLQueryItem(name: "verificationCode", value: verificationCode),
+            URLQueryItem(name: "rememberDevice", value: rememberDevice),
+        ]
+    }
+    
+    let deviceID: String
+    let deviceName: String
+    let verificationCode: String
+    let rememberDevice: String
 }
 
-public struct VerifyTwoFactorResponse: Codable {
+public struct VerifyTwoFactorResponse: Decodable {
     let success: Bool
 }
 
-public func verifyTwoFactorCode(deviceId: String, verificationCode: String, deviceName: String) async throws -> VerifyTwoFactorResponse {
-    try await AF.request(SB_BASE_URL.appending(component: "twoStepAuthVerify.json"), method: .post, parameters: [
-        "deviceId": deviceId,
-        "deviceName": deviceName,
-        "verificationCode": verificationCode,
-        "rememberDevice": "on"
-    ])
-    .serializingDecodable(VerifyTwoFactorResponse.self)
-    .value
+// MARK: - Client implementation
+
+extension Client {
+    public func validateSession() async throws -> ValidateSessionResponse {
+        let url = self.baseURL.appending(component: "validateSession.json")
+        let request = Request<ValidateSessionResponse>(method: .get, url: url)
+        return try await send(request)
+    }
+    
+    public func logIn(username: String, password: String) async throws -> LoginResponse {
+        let data = LoginRequest(loginUsername: username, password: password, deviceID: deviceID)
+        let url = self.baseURL.appending(component: "login.json")
+        let request = Request<LoginResponse>(method: .post, url: url, form: data)
+        let response = try await send(request)
+        self.saveCookie()
+        return response
+    }
+    
+    public func getTwoFactorContacts() async throws -> TwoFactorContactsResponse {
+        let url = self.baseURL.appending(component: "twoStepAuthContacts.json")
+        let request = Request<TwoFactorContactsResponse>(method: .get, url: url)
+        return try await send(request)
+    }
+    
+    public func requestTwoFactorCode(usingContactMethod contactMethod: TwoFactorContactMethod) async throws -> SendTwoFactorResponse {
+        let data = SendTwoFactorRequest(contactMethod: contactMethod)
+        let url = self.baseURL.appending(component: "twoStepAuthSendVerification.json")
+        let request = Request<SendTwoFactorResponse>(method: .post, url: url, form: data)
+        return try await send(request)
+    }
+    
+    public func verifyTwoFactorCode(code: String, deviceName: String) async throws -> VerifyTwoFactorResponse {
+        let data = VerifyTwoFactorRequest(deviceID: deviceID, deviceName: deviceName, verificationCode: code, rememberDevice: "on")
+        let url = self.baseURL.appending(component: "twoStepAuthVerify.json")
+        let request = Request<VerifyTwoFactorResponse>(method: .post, url: url, form: data)
+        return try await send(request)
+    }
 }

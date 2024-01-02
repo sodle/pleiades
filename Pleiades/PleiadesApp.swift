@@ -17,6 +17,10 @@ class AppState: ObservableObject {
     @Published var vehicles: [VehicleStub]?
 }
 
+var client: Client {
+    Client(baseURL: SB_BASE_URL, deviceID: UIDevice.current.identifierForVendor!.uuidString)
+}
+
 @main
 struct PleiadesApp: App {
     @StateObject var appState = AppState()
@@ -25,22 +29,24 @@ struct PleiadesApp: App {
     func initializeApp() async {
         if appState.currentRegion == .NotSelected {
             appState.loading = false
-            return
+            appState.currentRegion = .UnitedStates
         }
         
-        loadCookie()
-        
-        guard let vehicles = try? await refreshVehicles() else {
+        Task {
+            if let session = try? await client.validateSession(), session.success {
+                if let vehicles = try? await client.refreshVehicles(), vehicles.success, let data = vehicles.data {
+                    appState.loading = false
+                    appState.loggedIn = true
+                    appState.deviceRegistered = data.deviceRegistered
+                    appState.account = data.account
+                    appState.vehicles = data.vehicles
+                    return
+                }
+            }
+            
             appState.loading = false
-            appState.failed = true
-            return
+            appState.loggedIn = false
         }
-        
-        appState.loading = false
-        appState.loggedIn = vehicles.success
-        appState.deviceRegistered = vehicles.data.deviceRegistered
-        appState.account = vehicles.data.account
-        appState.vehicles = vehicles.data.vehicles
     }
     
     var body: some Scene {

@@ -18,6 +18,12 @@ struct TwoFactorView: View {
     @State var verificationCode: String = ""
     @State var deviceName: String = UIDevice.current.model
     
+    @State var alertActive = false
+    @State var secondaryAlertActive = false
+    @State var alertTitle = ""
+    @State var alertText = ""
+    @State var alertRetryable = false
+    
     @State var authCodeSent = false
     
     @MainActor
@@ -28,9 +34,15 @@ struct TwoFactorView: View {
             return
         }
         
-        let factors = try! await getTwoFactorContacts()
-        phoneFactor = factors.data.phone
-        emailFactor = factors.data.userName
+        if let factors = try? await client.getTwoFactorContacts(), factors.success, let data = factors.data {
+            phoneFactor = data.phone
+            emailFactor = data.userName
+        } else {
+            alertActive = true
+            alertTitle = "Failed to retrieve two-factor authentication options"
+            alertText = "Please try again later."
+            alertRetryable = false
+        }
     }
     
     var body: some View {
@@ -40,12 +52,16 @@ struct TwoFactorView: View {
             VStack {
                 if phoneFactor != nil {
                     Button {
-                        if !preview {
-                            Task {
-                                try! await sendTwoFactorCode(usingContactMethod: .sms)
+                        Task {
+                            if let requestTwoFactor = try? await client.requestTwoFactorCode(usingContactMethod: .sms), requestTwoFactor.success {
+                                authCodeSent = true
+                            } else {
+                                alertActive = true
+                                alertTitle = "Failed to request an authentication code"
+                                alertText = "Please try again."
+                                alertRetryable = true
                             }
                         }
-                        authCodeSent = true
                     } label: {
                         HStack {
                             Text("📲")
@@ -56,12 +72,16 @@ struct TwoFactorView: View {
                 }
                 if emailFactor != nil {
                     Button {
-                        if !preview {
-                            Task {
-                                try! await sendTwoFactorCode(usingContactMethod: .email)
+                        Task {
+                            if let requestTwoFactor = try? await client.requestTwoFactorCode(usingContactMethod: .email), requestTwoFactor.success {
+                                authCodeSent = true
+                            } else {
+                                alertActive = true
+                                alertTitle = "Failed to request an authentication code"
+                                alertText = "Please try again."
+                                alertRetryable = true
                             }
                         }
-                        authCodeSent = true
                     } label: {
                         HStack {
                             Text("📩")
@@ -74,6 +94,7 @@ struct TwoFactorView: View {
                 VStack {
                     Text("Enter the code we sent you")
                         .font(.title)
+                        .padding()
                     VStack {
                         TextField("Verification code", text: $verificationCode)
                             .padding()
@@ -88,25 +109,45 @@ struct TwoFactorView: View {
                     }.frame(maxHeight: .infinity)
                     Button {
                         Task {
-                            if !preview {
-                                let twoFactorResult = try! await verifyTwoFactorCode(
-                                    deviceId: UIDevice.current.identifierForVendor!.uuidString,
-                                    verificationCode: verificationCode,
-                                    deviceName: deviceName
-                                )
-                                if twoFactorResult.success {
-                                    appState.deviceRegistered = true
-                                    saveCookie()
-                                }
+                            if let twoFactorResult = try? await client.verifyTwoFactorCode(code: verificationCode, deviceName: deviceName), twoFactorResult.success {
+                                appState.deviceRegistered = true
+                            } else {
+                                secondaryAlertActive = true
+                                alertTitle = "Failed to complete two-factor authentication"
+                                alertText = "Please check your code and try again."
+                                alertRetryable = true
                             }
                         }
                     } label: {
                         Text("Submit").frame(maxWidth: .infinity)
-                    }.padding().buttonStyle(.borderedProminent)
+                    }
+                    .padding()
+                    .buttonStyle(.borderedProminent)
+                    .alert(alertTitle, isPresented: $secondaryAlertActive, actions: {
+                        Button {
+                            if !alertRetryable {
+                                appState.loggedIn = false
+                            }
+                        } label: {
+                            Text("Dismiss")
+                        }
+                    }) {
+                        Text(alertText)
+                    }
                 }
             }
         }.padding().task {
             await loadFactors()
+        }.alert(alertTitle, isPresented: $alertActive, actions: {
+            Button {
+                if !alertRetryable {
+                    appState.loggedIn = false
+                }
+            } label: {
+                Text("Dismiss")
+            }
+        }) {
+            Text(alertText)
         }
     }
 }

@@ -9,10 +9,16 @@ import SwiftUI
 import MapKit
 
 struct VehicleDetailView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     let vehicle: VehicleStub
     var preview = false
     
     @State var vehicleData: Vehicle?
+    
+    @State var alertActive = false
+    @State var alertTitle = ""
+    @State var alertText = ""
     
     @State private var mapRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
@@ -74,14 +80,25 @@ struct VehicleDetailView: View {
                     )
                 )
             } else {
-                let vehicleResponse = try! await selectVehicle(vin: vehicle.vin)
-                vehicleData = vehicleResponse.data
+                if let vehicle = try? await client.selectVehicle(withVin: vehicle.vin), vehicle.success, let data = vehicle.data {
+                    vehicleData = data
+                } else {
+                    alertActive = true
+                    alertTitle = "Failed to load vehicle information"
+                    alertText = "Please try again later."
+                }
             }
             
             if let data = vehicleData {
                 mapRegion.center.latitude = data.vehicleGeoPosition.latitude
                 mapRegion.center.longitude = data.vehicleGeoPosition.longitude
             }
+        }.alert(alertTitle, isPresented: $alertActive) {
+            Button("Dismiss") {
+                presentationMode.wrappedValue.dismiss()
+            }
+        } message: {
+            Text(alertText)
         }
     }
 }
