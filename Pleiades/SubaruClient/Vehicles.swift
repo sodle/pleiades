@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 // MARK: - List vehicles for account
 
@@ -40,6 +41,10 @@ public struct VehicleGeoPosition: Codable {
     let latitude: Double
     let longitude: Double
     let timestamp: String
+    
+    var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
 }
 
 public enum SubaruAPIGeneration: String {

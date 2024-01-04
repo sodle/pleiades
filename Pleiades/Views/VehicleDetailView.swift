@@ -43,10 +43,7 @@ struct VehicleDetailView: View {
                             .font(.title)
                         Map(coordinateRegion: $mapRegion, annotationItems: [data]) { marker in
                             MapMarker(
-                                coordinate: CLLocationCoordinate2D(
-                                    latitude: data.vehicleGeoPosition.latitude,
-                                    longitude: data.vehicleGeoPosition.longitude
-                                ),
+                                coordinate: data.vehicleGeoPosition.coordinate,
                                 tint: .red
                             )
                         }.frame(maxWidth: .infinity, idealHeight: 200)
@@ -90,8 +87,7 @@ struct VehicleDetailView: View {
             }
             
             if let data = vehicleData {
-                mapRegion.center.latitude = data.vehicleGeoPosition.latitude
-                mapRegion.center.longitude = data.vehicleGeoPosition.longitude
+                mapRegion.center = data.vehicleGeoPosition.coordinate
             }
         }.alert(alertTitle, isPresented: $alertActive) {
             Button("Dismiss") {
