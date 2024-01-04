@@ -32,9 +32,11 @@ struct VehicleListView: View {
                                     UserDefaults.standard.setValue(vehicle.vin, forKey: LAST_VEHICLE_KEY)
                                 }
                             }.navigationTitle("\(account.firstName)'s vehicles")
+                                .navigationBarBackButtonHidden()
                         case .detail(let vehicle):
                             VehicleDetailView(vehicle: vehicle, preview: preview)
                                 .navigationTitle(vehicle.vehicleName)
+                                .navigationBarTitleDisplayMode(.inline)
                         }
                     }
                 }.onAppear {
