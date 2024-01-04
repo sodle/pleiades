@@ -31,7 +31,7 @@ public struct Request<Response> {
 }
 
 public actor Client {
-    private let session: URLSession
+    let session: URLSession
     let baseURL: URL
     let deviceID: String
     
