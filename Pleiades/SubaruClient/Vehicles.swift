@@ -14,7 +14,7 @@ public struct Account: Codable {
     let lastName: String
 }
 
-public struct VehicleStub: Codable, Identifiable {
+public struct VehicleStub: Codable, Identifiable, Hashable {
     public var id: String {
         return vin
     }

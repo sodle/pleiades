@@ -7,21 +7,46 @@
 
 import SwiftUI
 
+fileprivate let LAST_VEHICLE_KEY = "PleiadesLastVehicle"
+
+enum Route: Hashable {
+    case list
+    case detail(VehicleStub)
+}
+
 struct VehicleListView: View {
+    @State private var path = NavigationPath([Route.list])
     var preview = false
     
     @EnvironmentObject var appState: AppState
     
     var body: some View {
         if let account = appState.account {
-            NavigationStack {
-                if let vehicles = appState.vehicles {
-                    List(vehicles) { vehicle in
-                        NavigationLink(vehicle.vehicleName) {
+            if let vehicles = appState.vehicles {
+                NavigationStack(path: $path) {
+                    VStack {}.navigationDestination(for: Route.self) { route in
+                        switch route {
+                        case .list:
+                            List(vehicles) { vehicle in
+                                NavigationLink(vehicle.vehicleName, value: Route.detail(vehicle)).onSubmit {
+                                    UserDefaults.standard.setValue(vehicle.vin, forKey: LAST_VEHICLE_KEY)
+                                }
+                            }.navigationTitle("\(account.firstName)'s vehicles")
+                        case .detail(let vehicle):
                             VehicleDetailView(vehicle: vehicle, preview: preview)
                                 .navigationTitle(vehicle.vehicleName)
                         }
-                    }.navigationTitle("\(account.firstName)'s vehicles")
+                    }
+                }.onAppear {
+                    if let lastVin = UserDefaults.standard.string(forKey: LAST_VEHICLE_KEY) {
+                        if let vehicleStub = vehicles.first(where: { vehicle in
+                            vehicle.vin == lastVin
+                        }) {
+                            path.append(Route.detail(vehicleStub))
+                        }
+                    } else if vehicles.count == 1, let onlyVehicle = vehicles.first {
+                        path.append(Route.detail(onlyVehicle))
+                    }
                 }
             }
         }
