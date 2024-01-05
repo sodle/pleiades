@@ -29,6 +29,9 @@ struct VehicleDetailView: View {
         ScrollView {
             if let data = vehicleData {
                 VStack {
+                    if (vehicleData?.apiGeneration == .g2) {
+                        TelematicsViewG2(vin: vehicle.vin)
+                    }
                     VStack {
                         Text("Vehicle information")
                             .font(.title)
@@ -95,7 +98,7 @@ struct VehicleDetailView: View {
             }
         } message: {
             Text(alertText)
-        }
+        }.scrollDismissesKeyboard(.interactively)
     }
 }
 

@@ -57,8 +57,10 @@ public actor Client {
         urlRequest.httpMethod = request.method.rawValue
         if let body = request.body {
             urlRequest.httpBody = try JSONEncoder().encode(body)
+            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         } else if let form = request.form {
             urlRequest.httpBody = encodeFormData(form)
+            urlRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         }
         
         let (data, _) = try await session.data(for: urlRequest)
