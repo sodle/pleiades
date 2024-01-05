@@ -104,13 +104,26 @@ extension Client {
         return try await send(request)
     }
     
-    public func logIn(username: String, password: String) async throws -> LoginResponse {
+    public func logIn(username: String, password: String, rememberMe: Bool = false) async throws -> LoginResponse {
         let data = LoginRequest(loginUsername: username, password: password, deviceID: deviceID)
         let url = self.baseURL.appending(component: "login.json")
         let request = Request<LoginResponse>(method: .post, url: url, form: data)
         let response = try await send(request)
-        self.saveCookie()
+        
+        if rememberMe {
+            saveCredentials(email: username, password: password)
+        }
+        
         return response
+    }
+    
+    public func tryRestoreSession() async throws -> Bool {
+        if let (email, password) = retrieveCredentials() {
+            if let response = try? await logIn(username: email, password: password) {
+                return response.success
+            }
+        }
+        return false
     }
     
     public func getTwoFactorContacts() async throws -> TwoFactorContactsResponse {

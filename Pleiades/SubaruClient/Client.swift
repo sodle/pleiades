@@ -41,8 +41,6 @@ public actor Client {
         self.baseURL = baseURL
         self.session = URLSession(configuration: configuration)
         self.deviceID = deviceID
-        
-        self.loadCookie()
     }
     
     func send<T: Decodable>(_ request: Request<T>) async throws -> T {

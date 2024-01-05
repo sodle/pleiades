@@ -7,16 +7,6 @@
 
 import SwiftUI
 
-fileprivate let PIN_KEY = "PleiadesPIN"
-
-fileprivate func getPin() -> String {
-    UserDefaults.standard.string(forKey: PIN_KEY) ?? ""
-}
-
-fileprivate func storePin(pin: String) {
-    UserDefaults.standard.setValue(pin, forKey: PIN_KEY)
-}
-
 struct TelematicsButtonG2: View {
     // Request function should take the VIN and remote services PIN, initiate the target remote command, and return a nullable request ID to check the status of the command.
     let label: String
@@ -24,12 +14,22 @@ struct TelematicsButtonG2: View {
     let width: Int = 1
     let requestFunction: ((String, String) async throws -> String?)
     
-    @State private var pin: String = getPin()
+    @State private var pin: String = retrievePIN() ?? ""
     
     @State private var pinPromptActive = false
     @State private var loading = false
     @State private var failed = false
     @State private var success = false
+    
+    private func setResetTimer(_ seconds: Int = 2) {
+        Task {
+            try await Task.sleep(for: .seconds(seconds))
+            pinPromptActive = false
+            loading = false
+            failed = false
+            success = false
+        }
+    }
     
     private func onClick() {
         pinPromptActive = false
@@ -37,9 +37,9 @@ struct TelematicsButtonG2: View {
         success = false
         loading = true
         
-        // if the pin isn't empty, try to get it from the userdata
+        // if the pin isn't empty, try to get it from the keychain
         if pin.isEmpty {
-            pin = getPin()
+            pin = retrievePIN() ?? ""
         }
         
         // if it's still empty, prompt for it
@@ -63,23 +63,27 @@ struct TelematicsButtonG2: View {
                             loading = false
                             success = true
                             if preserve {
-                                storePin(pin: pin)
+                                savePIN(pin: pin)
                             }
+                            setResetTimer()
                             break
                         } else {
                             loading = false
                             failed = true
+                            setResetTimer(10)
                             break
                         }
                     } else {
                         loading = false
                         failed = true
+                        setResetTimer(10)
                         break
                     }
                 }
             } else {
                 loading = false
                 failed = true
+                setResetTimer(10)
             }
         }
     }

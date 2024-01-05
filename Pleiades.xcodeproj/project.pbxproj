@@ -14,8 +14,8 @@
 		1A040FF429A1151200CF816C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A040FF329A1151200CF816C /* Constants.swift */; };
 		1A040FF629A11FD000CF816C /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A040FF529A11FD000CF816C /* Authentication.swift */; };
 		1A268A7B2B43E8EE00C35FAE /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A268A7A2B43E8EE00C35FAE /* Client.swift */; };
-		1A268A7D2B447DC600C35FAE /* Cookies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A268A7C2B447DC600C35FAE /* Cookies.swift */; };
 		1A3D0A222B4726D2008AC9F6 /* TelematicsViewG2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3D0A212B4726D2008AC9F6 /* TelematicsViewG2.swift */; };
+		1A3D0A242B486438008AC9F6 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3D0A232B486438008AC9F6 /* Keychain.swift */; };
 		1AA2987D2B4709CD00ED49B6 /* TelematicsG2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA2987C2B4709CD00ED49B6 /* TelematicsG2.swift */; };
 		1ACE4B2D29AC283700CB004E /* Vehicles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE4B2C29AC283700CB004E /* Vehicles.swift */; };
 		1ACE4B2F29AC457000CB004E /* VehicleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE4B2E29AC457000CB004E /* VehicleListView.swift */; };
@@ -37,8 +37,8 @@
 		1A040FF329A1151200CF816C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1A040FF529A11FD000CF816C /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		1A268A7A2B43E8EE00C35FAE /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
-		1A268A7C2B447DC600C35FAE /* Cookies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cookies.swift; sourceTree = "<group>"; };
 		1A3D0A212B4726D2008AC9F6 /* TelematicsViewG2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelematicsViewG2.swift; sourceTree = "<group>"; };
+		1A3D0A232B486438008AC9F6 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		1AA2987C2B4709CD00ED49B6 /* TelematicsG2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelematicsG2.swift; sourceTree = "<group>"; };
 		1ACE4B2C29AC283700CB004E /* Vehicles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicles.swift; sourceTree = "<group>"; };
 		1ACE4B2E29AC457000CB004E /* VehicleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListView.swift; sourceTree = "<group>"; };
@@ -109,8 +109,8 @@
 				1A040FF529A11FD000CF816C /* Authentication.swift */,
 				1ACE4B2C29AC283700CB004E /* Vehicles.swift */,
 				1A268A7A2B43E8EE00C35FAE /* Client.swift */,
-				1A268A7C2B447DC600C35FAE /* Cookies.swift */,
 				1AA2987C2B4709CD00ED49B6 /* TelematicsG2.swift */,
+				1A3D0A232B486438008AC9F6 /* Keychain.swift */,
 			);
 			path = SubaruClient;
 			sourceTree = "<group>";
@@ -217,11 +217,11 @@
 				1AE12E0A29ABC0EA0040E16C /* TwoFactorView.swift in Sources */,
 				1ACE4B3129AC4D6F00CB004E /* VehicleDetailView.swift in Sources */,
 				1A040FE429A1134400CF816C /* PleiadesApp.swift in Sources */,
+				1A3D0A242B486438008AC9F6 /* Keychain.swift in Sources */,
 				1A040FF429A1151200CF816C /* Constants.swift in Sources */,
 				1A3D0A222B4726D2008AC9F6 /* TelematicsViewG2.swift in Sources */,
 				1AA2987D2B4709CD00ED49B6 /* TelematicsG2.swift in Sources */,
 				1ACE4B2F29AC457000CB004E /* VehicleListView.swift in Sources */,
-				1A268A7D2B447DC600C35FAE /* Cookies.swift in Sources */,
 				1AE12E0429AB046B0040E16C /* LoginView.swift in Sources */,
 				1AE12E0829AB05140040E16C /* TopLevelErrorView.swift in Sources */,
 				1A268A7B2B43E8EE00C35FAE /* Client.swift in Sources */,

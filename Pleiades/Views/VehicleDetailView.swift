@@ -9,8 +9,6 @@ import SwiftUI
 import MapKit
 
 struct VehicleDetailView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     let vehicle: VehicleStub
     var preview = false
     
@@ -93,12 +91,10 @@ struct VehicleDetailView: View {
                 mapRegion.center = data.vehicleGeoPosition.coordinate
             }
         }.alert(alertTitle, isPresented: $alertActive) {
-            Button("Dismiss") {
-                presentationMode.wrappedValue.dismiss()
-            }
+            Button("Dismiss") {}
         } message: {
             Text(alertText)
-        }.scrollDismissesKeyboard(.interactively)
+        }
     }
 }
 

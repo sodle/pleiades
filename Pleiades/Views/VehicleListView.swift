@@ -61,7 +61,8 @@ struct VehicleListView_Previews: PreviewProvider {
             let state = AppState()
             state.account = Account(firstName: "John", lastName: "Smith")
             state.vehicles = [
-                VehicleStub(vehicleName: "John's WRX", vin: "VXXX")
+                VehicleStub(vehicleName: "John's WRX", vin: "VXXX"),
+                VehicleStub(vehicleName: "Tony's Outback", vin: "VYYYY")
             ]
             return state
         }())

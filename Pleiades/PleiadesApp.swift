@@ -33,14 +33,16 @@ struct PleiadesApp: App {
         }
         
         Task {
-            if let session = try? await client.validateSession(), session.success {
-                if let vehicles = try? await client.refreshVehicles(), vehicles.success, let data = vehicles.data {
-                    appState.loading = false
-                    appState.loggedIn = true
-                    appState.deviceRegistered = data.deviceRegistered
-                    appState.account = data.account
-                    appState.vehicles = data.vehicles
-                    return
+            if let restoredLogin = try? await client.tryRestoreSession(), restoredLogin {
+                if let session = try? await client.validateSession(), session.success {
+                    if let vehicles = try? await client.refreshVehicles(), vehicles.success, let data = vehicles.data {
+                        appState.loading = false
+                        appState.loggedIn = true
+                        appState.deviceRegistered = data.deviceRegistered
+                        appState.account = data.account
+                        appState.vehicles = data.vehicles
+                        return
+                    }
                 }
             }
             
