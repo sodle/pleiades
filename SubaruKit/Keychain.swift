@@ -35,7 +35,7 @@ fileprivate func createSearchQuery(_ credentialType: CredentialType, server: Str
 
 // MARK: - MySubaru account credentials
 
-func saveCredentials(email: String, password: String) {
+public func saveCredentials(email: String, password: String) {
     let server = SB_BASE_URL.absoluteString
     
     let query = createAddQuery(.accountCredentials, server: server, email: email, password: password)
@@ -47,7 +47,7 @@ func saveCredentials(email: String, password: String) {
     }
 }
 
-func retrieveCredentials() -> (String, String)? {
+public func retrieveCredentials() -> (String, String)? {
     let server = SB_BASE_URL.absoluteString
     
     let query = createSearchQuery(.accountCredentials, server: server)
@@ -68,7 +68,7 @@ func retrieveCredentials() -> (String, String)? {
 
 // MARK: - Remote Services PIN
 
-func savePIN(pin: String) {
+public func savePIN(pin: String) {
     let server = SB_BASE_URL.absoluteString
     guard let (email, _) = retrieveCredentials() else {
         // TODO: HANDLE ERROR
@@ -84,7 +84,7 @@ func savePIN(pin: String) {
     }
 }
 
-func retrievePIN() -> String? {
+public func retrievePIN() -> String? {
     let server = SB_BASE_URL.absoluteString
     
     let query = createSearchQuery(.remoteServicesPin, server: server)
@@ -103,7 +103,7 @@ func retrievePIN() -> String? {
 
 // MARK: - Clear saved credentials
 
-func clearKeychain(server: String) {
+public func clearKeychain(server: String) {
     let query = [
         kSecClass as String: kSecClassInternetPassword,
         kSecAttrServer as String: server,

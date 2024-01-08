@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SubaruKit
 
 struct TelematicsButtonG2: View {
     // Request function should take the VIN and remote services PIN, initiate the target remote command, and return a nullable request ID to check the status of the command.

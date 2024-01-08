@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Validate session
 
 public struct ValidateSessionResponse : Decodable {
-    let success: Bool
+    public let success: Bool
 }
 
 // MARK: - Log in
@@ -24,32 +24,32 @@ public struct LoginRequest : FormDataEncodable {
         ]
     }
     
-    let loginUsername: String
-    let password: String
-    let deviceID: String
+    public let loginUsername: String
+    public let password: String
+    public let deviceID: String
 }
 
 public struct LoginResponseData : Decodable {
-    let deviceRegistered: Bool
-    let account: Account
-    let vehicles: [VehicleStub]
+    public let deviceRegistered: Bool
+    public let account: Account
+    public let vehicles: [VehicleStub]
 }
 
 public struct LoginResponse : Decodable {
-    let success: Bool
-    let data: LoginResponseData?
+    public let success: Bool
+    public let data: LoginResponseData?
 }
 
 // MARK: - Get two-step verification contacts
 
 public struct TwoFactorContactsData: Decodable {
-    let phone: String?
-    let userName: String?
+    public let phone: String?
+    public let userName: String?
 }
 
 public struct TwoFactorContactsResponse: Decodable {
-    let success: Bool
-    let data: TwoFactorContactsData?
+    public let success: Bool
+    public let data: TwoFactorContactsData?
 }
 
 // MARK: - Send two-step verification code
@@ -66,11 +66,11 @@ public struct SendTwoFactorRequest: FormDataEncodable {
         ]
     }
     
-    let contactMethod: TwoFactorContactMethod
+    public let contactMethod: TwoFactorContactMethod
 }
 
 public struct SendTwoFactorResponse: Decodable {
-    let success: Bool
+    public let success: Bool
 }
 
 // MARK: - Verify two-step verification code
@@ -85,14 +85,14 @@ public struct VerifyTwoFactorRequest: FormDataEncodable {
         ]
     }
     
-    let deviceID: String
-    let deviceName: String
-    let verificationCode: String
-    let rememberDevice: String
+    public let deviceID: String
+    public let deviceName: String
+    public let verificationCode: String
+    public let rememberDevice: String
 }
 
 public struct VerifyTwoFactorResponse: Decodable {
-    let success: Bool
+    public let success: Bool
 }
 
 // MARK: - Client implementation

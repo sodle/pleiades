@@ -11,13 +11,16 @@
 		1A040FE629A1134400CF816C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A040FE529A1134400CF816C /* ContentView.swift */; };
 		1A040FE829A1134500CF816C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A040FE729A1134500CF816C /* Assets.xcassets */; };
 		1A040FEC29A1134500CF816C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A040FEB29A1134500CF816C /* Preview Assets.xcassets */; };
-		1A040FF429A1151200CF816C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A040FF329A1151200CF816C /* Constants.swift */; };
-		1A040FF629A11FD000CF816C /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A040FF529A11FD000CF816C /* Authentication.swift */; };
-		1A268A7B2B43E8EE00C35FAE /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A268A7A2B43E8EE00C35FAE /* Client.swift */; };
 		1A3D0A222B4726D2008AC9F6 /* TelematicsViewG2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3D0A212B4726D2008AC9F6 /* TelematicsViewG2.swift */; };
-		1A3D0A242B486438008AC9F6 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3D0A232B486438008AC9F6 /* Keychain.swift */; };
-		1AA2987D2B4709CD00ED49B6 /* TelematicsG2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA2987C2B4709CD00ED49B6 /* TelematicsG2.swift */; };
-		1ACE4B2D29AC283700CB004E /* Vehicles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE4B2C29AC283700CB004E /* Vehicles.swift */; };
+		1ABB60C42B4C8EA70035E883 /* SubaruKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ABB60C32B4C8EA70035E883 /* SubaruKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1ABB60C82B4C8EEE0035E883 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3D0A232B486438008AC9F6 /* Keychain.swift */; };
+		1ABB60C92B4C8EEE0035E883 /* Vehicles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE4B2C29AC283700CB004E /* Vehicles.swift */; };
+		1ABB60CA2B4C8EEE0035E883 /* TelematicsG2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA2987C2B4709CD00ED49B6 /* TelematicsG2.swift */; };
+		1ABB60CB2B4C8EEE0035E883 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A040FF529A11FD000CF816C /* Authentication.swift */; };
+		1ABB60CC2B4C8EEE0035E883 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A040FF329A1151200CF816C /* Constants.swift */; };
+		1ABB60CD2B4C8EEE0035E883 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A268A7A2B43E8EE00C35FAE /* Client.swift */; };
+		1ABB60CF2B4C92C60035E883 /* SubaruKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABB60C12B4C8EA70035E883 /* SubaruKit.framework */; };
+		1ABB60D02B4C92C60035E883 /* SubaruKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABB60C12B4C8EA70035E883 /* SubaruKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1ACE4B2F29AC457000CB004E /* VehicleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE4B2E29AC457000CB004E /* VehicleListView.swift */; };
 		1ACE4B3129AC4D6F00CB004E /* VehicleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE4B3029AC4D6F00CB004E /* VehicleDetailView.swift */; };
 		1AD0071529AD371400256BCF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1AD0071429AD371400256BCF /* README.md */; };
@@ -26,6 +29,20 @@
 		1AE12E0829AB05140040E16C /* TopLevelErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE12E0729AB05140040E16C /* TopLevelErrorView.swift */; };
 		1AE12E0A29ABC0EA0040E16C /* TwoFactorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE12E0929ABC0EA0040E16C /* TwoFactorView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1ABB60D12B4C92C60035E883 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1ABB60D02B4C92C60035E883 /* SubaruKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1A040FE029A1134400CF816C /* Pleiades.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pleiades.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +57,8 @@
 		1A3D0A212B4726D2008AC9F6 /* TelematicsViewG2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelematicsViewG2.swift; sourceTree = "<group>"; };
 		1A3D0A232B486438008AC9F6 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		1AA2987C2B4709CD00ED49B6 /* TelematicsG2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelematicsG2.swift; sourceTree = "<group>"; };
+		1ABB60C12B4C8EA70035E883 /* SubaruKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SubaruKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1ABB60C32B4C8EA70035E883 /* SubaruKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubaruKit.h; sourceTree = "<group>"; };
 		1ACE4B2C29AC283700CB004E /* Vehicles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicles.swift; sourceTree = "<group>"; };
 		1ACE4B2E29AC457000CB004E /* VehicleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListView.swift; sourceTree = "<group>"; };
 		1ACE4B3029AC4D6F00CB004E /* VehicleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetailView.swift; sourceTree = "<group>"; };
@@ -56,6 +75,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ABB60CF2B4C92C60035E883 /* SubaruKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1ABB60BE2B4C8EA70035E883 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +94,7 @@
 			children = (
 				1AD0071429AD371400256BCF /* README.md */,
 				1A040FE229A1134400CF816C /* Pleiades */,
+				1ABB60C22B4C8EA70035E883 /* SubaruKit */,
 				1A040FE129A1134400CF816C /* Products */,
 				1ACE4B3229AC59CC00CB004E /* Frameworks */,
 			);
@@ -76,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				1A040FE029A1134400CF816C /* Pleiades.app */,
+				1ABB60C12B4C8EA70035E883 /* SubaruKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				1AE12E0229AB00A90040E16C /* Views */,
-				1A040FF229A113E800CF816C /* SubaruClient */,
 				1A040FE329A1134400CF816C /* PleiadesApp.swift */,
 				1A040FE529A1134400CF816C /* ContentView.swift */,
 				1A040FE729A1134500CF816C /* Assets.xcassets */,
@@ -102,7 +130,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		1A040FF229A113E800CF816C /* SubaruClient */ = {
+		1ABB60C22B4C8EA70035E883 /* SubaruKit */ = {
 			isa = PBXGroup;
 			children = (
 				1A040FF329A1151200CF816C /* Constants.swift */,
@@ -111,8 +139,9 @@
 				1A268A7A2B43E8EE00C35FAE /* Client.swift */,
 				1AA2987C2B4709CD00ED49B6 /* TelematicsG2.swift */,
 				1A3D0A232B486438008AC9F6 /* Keychain.swift */,
+				1ABB60C32B4C8EA70035E883 /* SubaruKit.h */,
 			);
-			path = SubaruClient;
+			path = SubaruKit;
 			sourceTree = "<group>";
 		};
 		1ACE4B3229AC59CC00CB004E /* Frameworks */ = {
@@ -139,6 +168,17 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		1ABB60BC2B4C8EA70035E883 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1ABB60C42B4C8EA70035E883 /* SubaruKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		1A040FDF29A1134400CF816C /* Pleiades */ = {
 			isa = PBXNativeTarget;
@@ -147,6 +187,7 @@
 				1A040FDC29A1134400CF816C /* Sources */,
 				1A040FDD29A1134400CF816C /* Frameworks */,
 				1A040FDE29A1134400CF816C /* Resources */,
+				1ABB60D12B4C92C60035E883 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -158,6 +199,24 @@
 			productName = Pleiades;
 			productReference = 1A040FE029A1134400CF816C /* Pleiades.app */;
 			productType = "com.apple.product-type.application";
+		};
+		1ABB60C02B4C8EA70035E883 /* SubaruKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1ABB60C72B4C8EA70035E883 /* Build configuration list for PBXNativeTarget "SubaruKit" */;
+			buildPhases = (
+				1ABB60BC2B4C8EA70035E883 /* Headers */,
+				1ABB60BD2B4C8EA70035E883 /* Sources */,
+				1ABB60BE2B4C8EA70035E883 /* Frameworks */,
+				1ABB60BF2B4C8EA70035E883 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SubaruKit;
+			productName = SubaruKit;
+			productReference = 1ABB60C12B4C8EA70035E883 /* SubaruKit.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -171,6 +230,9 @@
 				TargetAttributes = {
 					1A040FDF29A1134400CF816C = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					1ABB60C02B4C8EA70035E883 = {
+						CreatedOnToolsVersion = 15.1;
 					};
 				};
 			};
@@ -190,6 +252,7 @@
 			projectRoot = "";
 			targets = (
 				1A040FDF29A1134400CF816C /* Pleiades */,
+				1ABB60C02B4C8EA70035E883 /* SubaruKit */,
 			);
 		};
 /* End PBXProject section */
@@ -205,6 +268,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1ABB60BF2B4C8EA70035E883 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -217,16 +287,23 @@
 				1AE12E0A29ABC0EA0040E16C /* TwoFactorView.swift in Sources */,
 				1ACE4B3129AC4D6F00CB004E /* VehicleDetailView.swift in Sources */,
 				1A040FE429A1134400CF816C /* PleiadesApp.swift in Sources */,
-				1A3D0A242B486438008AC9F6 /* Keychain.swift in Sources */,
-				1A040FF429A1151200CF816C /* Constants.swift in Sources */,
 				1A3D0A222B4726D2008AC9F6 /* TelematicsViewG2.swift in Sources */,
-				1AA2987D2B4709CD00ED49B6 /* TelematicsG2.swift in Sources */,
 				1ACE4B2F29AC457000CB004E /* VehicleListView.swift in Sources */,
 				1AE12E0429AB046B0040E16C /* LoginView.swift in Sources */,
 				1AE12E0829AB05140040E16C /* TopLevelErrorView.swift in Sources */,
-				1A268A7B2B43E8EE00C35FAE /* Client.swift in Sources */,
-				1A040FF629A11FD000CF816C /* Authentication.swift in Sources */,
-				1ACE4B2D29AC283700CB004E /* Vehicles.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1ABB60BD2B4C8EA70035E883 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1ABB60CC2B4C8EEE0035E883 /* Constants.swift in Sources */,
+				1ABB60C92B4C8EEE0035E883 /* Vehicles.swift in Sources */,
+				1ABB60CD2B4C8EEE0035E883 /* Client.swift in Sources */,
+				1ABB60CA2B4C8EEE0035E883 /* TelematicsG2.swift in Sources */,
+				1ABB60C82B4C8EEE0035E883 /* Keychain.swift in Sources */,
+				1ABB60CB2B4C8EEE0035E883 /* Authentication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +513,93 @@
 			};
 			name = Release;
 		};
+		1ABB60C52B4C8EA70035E883 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TYVR9GGSKN;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.1;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sjodle.SubaruKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		1ABB60C62B4C8EA70035E883 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TYVR9GGSKN;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.1;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sjodle.SubaruKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -453,6 +617,15 @@
 			buildConfigurations = (
 				1A040FF029A1134500CF816C /* Debug */,
 				1A040FF129A1134500CF816C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1ABB60C72B4C8EA70035E883 /* Build configuration list for PBXNativeTarget "SubaruKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1ABB60C52B4C8EA70035E883 /* Debug */,
+				1ABB60C62B4C8EA70035E883 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

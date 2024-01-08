@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import SubaruKit
 
 struct VehicleDetailView: View {
     let vehicle: VehicleStub

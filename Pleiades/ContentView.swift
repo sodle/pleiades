@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SubaruKit
 
 struct ContentView: View {
     var preview = false

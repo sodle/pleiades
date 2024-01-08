@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SubaruKit
 
 struct RegionSelectView: View {
     @EnvironmentObject var appState: AppState

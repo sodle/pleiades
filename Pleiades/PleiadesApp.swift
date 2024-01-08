@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SubaruKit
 
 class AppState: ObservableObject {
     @Published var currentRegion = SB_CURRENT_REGION

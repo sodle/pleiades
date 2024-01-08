@@ -12,12 +12,12 @@ fileprivate let g2BaseUrl = SB_BASE_URL.appending(component: "service").appendin
 // MARK: - Request Status API
 
 public struct RequestStatusResponseDataG2: Decodable {
-    let remoteServiceState: String
+    public let remoteServiceState: String
 }
 
 public struct RequestStatusResponseG2: Decodable {
-    let success: Bool
-    let data: RequestStatusResponseDataG2?
+    public let success: Bool
+    public let data: RequestStatusResponseDataG2?
 }
 
 // MARK: - Door Lock API
@@ -28,20 +28,20 @@ public enum DoorCommandTargetG2: String, Encodable {
 }
 
 public struct UnlockDoorsRequestG2: Encodable {
-    let pin: String
-    let unlockDoorType: DoorCommandTargetG2
+    public let pin: String
+    public let unlockDoorType: DoorCommandTargetG2
 }
 
 public struct UnlockDoorsResponseDataG2: Decodable {
-    let serviceRequestId: String
-    let success: Bool
-    let cancelled: Bool
-    let remoteServiceState: String
+    public let serviceRequestId: String
+    public let success: Bool
+    public let cancelled: Bool
+    public let remoteServiceState: String
 }
 
 public struct UnlockDoorsResponseG2: Decodable {
-    let success: Bool
-    let data: UnlockDoorsResponseDataG2?
+    public let success: Bool
+    public let data: UnlockDoorsResponseDataG2?
 }
 
 // MARK: - Client implementation

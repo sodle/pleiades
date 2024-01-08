@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SubaruKit
 
 fileprivate let LAST_VEHICLE_KEY = "PleiadesLastVehicle"
 
