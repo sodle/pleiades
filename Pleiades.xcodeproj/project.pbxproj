@@ -62,7 +62,6 @@
 		1ACE4B2C29AC283700CB004E /* Vehicles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicles.swift; sourceTree = "<group>"; };
 		1ACE4B2E29AC457000CB004E /* VehicleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListView.swift; sourceTree = "<group>"; };
 		1ACE4B3029AC4D6F00CB004E /* VehicleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetailView.swift; sourceTree = "<group>"; };
-		1ACE4B3329AC59CC00CB004E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.2.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
 		1AD0071429AD371400256BCF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1AE12E0329AB046B0040E16C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		1AE12E0529AB04B80040E16C /* RegionSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionSelectView.swift; sourceTree = "<group>"; };
@@ -96,7 +95,6 @@
 				1A040FE229A1134400CF816C /* Pleiades */,
 				1ABB60C22B4C8EA70035E883 /* SubaruKit */,
 				1A040FE129A1134400CF816C /* Products */,
-				1ACE4B3229AC59CC00CB004E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,14 +140,6 @@
 				1ABB60C32B4C8EA70035E883 /* SubaruKit.h */,
 			);
 			path = SubaruKit;
-			sourceTree = "<group>";
-		};
-		1ACE4B3229AC59CC00CB004E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1ACE4B3329AC59CC00CB004E /* MapKit.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		1AE12E0229AB00A90040E16C /* Views */ = {
